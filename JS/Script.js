@@ -30,15 +30,16 @@ function getToDos() {
 			//* Step6 Inserting the response from server into an html element
 			var ajax_json = JSON.parse(this.responseText);
             var TableString='<thead> <tr>  			  <th>Current ToDos </th>			</tr>    </thead>  	  <tbody> ';
-            // var count=0
+            var count=0
        
             ajax_json.forEach(element => {
                 var title = element.title;
                 var checkvalue=element.completed;
-                // count += 1
-                // var id= `checkbox${count}`               
-				if(!checkvalue){
-                TableString += `<tr><td><input type="checkbox" class="CheckBoxes"/><label>${title}</label></td></tr>`;
+				var userID=element.userId;
+                count += 1;
+                var id= `CurrentToDocheckbox${count}`;               
+				if(!checkvalue && userID==1 ){
+                TableString += `<tr><td><input type="checkbox" id="${id}" class="CheckBoxes" onclick="CountTick()"><label for="${id}">${title}</label></td></tr>`;
 				}
                 
               
@@ -46,9 +47,11 @@ function getToDos() {
             });
 			TableString +='</tbody>'
             document.getElementById("ToDoTable").innerHTML=TableString;
-			$(document).ready(function(){
-				$('#ToDoTable').dataTable();
-			});
+
+
+			// $(document).ready(function(){
+			// 	$('#ToDoTable').dataTable();
+			// });
 
 
             
@@ -62,3 +65,62 @@ function getToDos() {
 	xhttp.send();
 }
 getToDos();
+function myAlert(message) {
+	alert(message)
+  }
+  function myLog(log)
+  {
+	  console.log("Not 5")
+  }
+function CountTick(){
+	var table=document.getElementById("ToDoTable");
+	var count=table.rows.length;
+	let countTicked=0;
+	let x=1;
+
+		for(;x<count;x++){
+
+			
+			var id=`CurrentToDocheckbox${x}`; 
+			var checkBox=document.getElementById(id);
+			console.log(`id -${id} countchecked${countTicked}`);
+			if(checkBox.value==true){
+
+				countTicked+=1
+			}
+			
+			
+			
+			
+
+			
+			
+
+
+		}
+		console.log(`count =${countTicked} x=${x}`);
+	
+	  
+	  let myPromise = new Promise(function(myResolve, myReject) {
+
+
+		
+		
+		
+	  
+	
+	  
+		if (countTicked > 4) {
+		  myResolve("5 or More Items Completed");
+		} else {
+		  myReject("Less Than 5");
+		}
+	  });
+	  
+	  myPromise.then(
+		function(value) {myAlert(value);},
+		function(error) {myLog(error);}
+	  );
+
+}
+
