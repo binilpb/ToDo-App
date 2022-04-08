@@ -28,7 +28,7 @@
 
                     <div class="col-lg-12 login-form">
                         <div class="col-lg-12 login-form">
-                            <form id="LoginForm" action="./index.html"  onsubmit="return LogInValidation()">
+                            <form id="LoginForm" action="./index.html"  onsubmit="return Validate(document.getElementById('emailLogin').value,document.getElementById('passwordLogin').value,LoginMessage)">
                                 <div class="form-group">
                                     <label for="emailLogin" class="form-control-label">USERNAME</label>
                                     <input type="text" class="form-control" id="emailLogin">
@@ -44,7 +44,7 @@
                                     </div>
                                     
                                     <div class="col-lg-12 login-btm login-button">
-                                        <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+                                        <button type="button" class="btn btn-outline-primary" id="LoginButton">LOGIN</button>
                                         
                                         
                                             
@@ -62,7 +62,7 @@
                                     </div>  
                                 </div>
                                 <div class="col-lg-8 signup-Message">                                    
-                                    <p>Don't have an account?    &nbsp;&nbsp; <a href="./signUp.html">Sign up</a> </p>
+                                    <p>Don't have an account?    &nbsp;&nbsp; <a href="#">Sign up</a> </p>
                                 </div>
                                 
                             </form>
@@ -76,7 +76,8 @@
  
 </div>
 </main>
-<script src="./Scripts/Script.js"></script>
+
+<script src="./JS/login.js"></script>
 
 </body>
 </html>
