@@ -73,20 +73,42 @@ function myAlert(message) {
 	  console.log("Not 5")
   }
 function CountTick(){
-	var table=document.getElementById("ToDoTable");
-	var count=table.rows.length;
-	let countTicked=0;
-	let x=1;
+
+	
+	  let myPromise = new Promise(function(myResolve, myReject) {
+		  
+			var table=document.getElementById("ToDoTable");
+			var count=table.rows.length;
+			let countTicked=0;
+			let x=1;
 
 		for(;x<count;x++){
 
 			
-			var id=`CurrentToDocheckbox${x}`; 
+			var id=`CurrentToDocheckbox${x}`; 		
 			var checkBox=document.getElementById(id);
-			console.log(`id -${id} countchecked${countTicked}`);
-			if(checkBox.value==true){
+			
+			
+			if(checkBox==null){
+				
+				setTimeout(() => {
+					if(checkBox.value==true){
+						console.log("Tick");
 
-				countTicked+=1
+						countTicked+=1;
+					}
+					else{
+						console.log("No Tick");
+					}
+
+					
+				}, 1);
+			}
+					
+			else if(checkBox.value==true){
+				console.log("Tick");
+
+				countTicked+=1;
 			}
 			
 			
@@ -101,7 +123,6 @@ function CountTick(){
 		console.log(`count =${countTicked} x=${x}`);
 	
 	  
-	  let myPromise = new Promise(function(myResolve, myReject) {
 
 
 		
